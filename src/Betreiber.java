@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * Created by Adrian on 21/12/15.
  */
-public class Betreiber implements HasEnergyOutput {
+public class Betreiber implements EnergyProducer {
 
     private final String name;
     private final List<EnergyProducer> windparks = new ArrayList<EnergyProducer>();
-
+    //Hätte eigentlich noch andere Stromerzeuger, aber diese werden hier nicht aufgeführt
 
     public Betreiber(String name) {
         this.name=name;
@@ -27,12 +27,12 @@ public class Betreiber implements HasEnergyOutput {
     }
 
     @Override
-    public long getOutput() {
-        long output = 0;
+    public long getPower() {
+        long power = 0;
         for(EnergyProducer windpark : windparks) {
-            output = output + windpark.getOutput();
+            power = power + windpark.getPower();
         }
-        return output;
+        return power;
     }
 
     @Override
@@ -45,6 +45,16 @@ public class Betreiber implements HasEnergyOutput {
         }
 
         return foerderung;
+    }
+
+    @Override
+    public long getEEGAdvancement() {
+        long advancement=0;
+        for(EnergyProducer windpark : windparks) {
+            advancement = advancement + windpark.getEEGAdvancement();
+        }
+
+        return advancement;
     }
 
     public List<EnergyProducer> getProducers(){

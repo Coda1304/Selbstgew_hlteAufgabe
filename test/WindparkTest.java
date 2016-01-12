@@ -19,10 +19,10 @@ public class WindparkTest {
 
 
     @Test
-    public void testGetOutput() throws Exception {
-        assertEquals(5000 , park.getOutput() );
+    public void testGetPower() throws Exception {
+        assertEquals(5000 , park.getPower() );
         park.addTurbine(Z);
-        assertEquals(5100,park.getOutput());
+        assertEquals(5100,park.getPower());
 
     }
 
@@ -31,6 +31,13 @@ public class WindparkTest {
         assertEquals(12 , park.getFoerderung() );
         park.addTurbine(Z);
         assertEquals(42, park.getFoerderung());
+    }
+
+    @Test
+    public void testGetAdvancement() throws Exception {
+        assertEquals(216000 , park.getEEGAdvancement() );
+        park.addTurbine(Z);
+        assertEquals(226800, park.getEEGAdvancement());
     }
 
     @Test

@@ -1,22 +1,20 @@
-import java.util.List;
-
 /**
  * Created by Adrian on 21/12/15.
  */
-public class Turbine implements HasEnergyOutput,EnergyProducer{
+public class Turbine implements EnergyProducer{
 
-    private final long output;
+    private final long power;
     private final long foerderung;
 
-    public Turbine(long foerderung, long output){
+    public Turbine(long foerderung, long power){
        this.foerderung=foerderung;
-       this.output=output;
+       this.power =power;
 
     }
 
     @Override
-    public long getOutput() {
-        return output;
+    public long getPower() {
+        return power;
     }
 
     @Override
@@ -25,6 +23,11 @@ public class Turbine implements HasEnergyOutput,EnergyProducer{
         
     }
 
+    @Override
+    public long getEEGAdvancement() {
+        return ( (power*24*15)*foerderung/100 );
+        // Der Wind weht nur in jeder zweiten Std. Hier müssten reale Winddaten für die EEG Vergütung genutzt werden
+    }
 
     @Override
     public void accept(EnergyVisitor visitor) {

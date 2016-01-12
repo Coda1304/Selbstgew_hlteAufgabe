@@ -19,6 +19,8 @@ public class Windpark implements EnergyProducer {
        turbinen.add(e);
     }
 
+    public void removeTurbine(EnergyProducer e){ turbinen.remove(e); }
+
     public List<EnergyProducer> getTurbinen(){
         return Collections.unmodifiableList(turbinen);
     }
@@ -29,10 +31,10 @@ public class Windpark implements EnergyProducer {
 
 
     @Override
-    public long getOutput() {
+    public long getPower() {
         long result=0;
         for(EnergyProducer turbine : turbinen){
-            result = result+turbine.getOutput();
+            result = result+turbine.getPower();
         }
         return result;
     }
@@ -46,6 +48,14 @@ public class Windpark implements EnergyProducer {
         return result;
     }
 
+    @Override
+    public long getEEGAdvancement() {
+        long result=0;
+        for(EnergyProducer turbine : turbinen){
+            result = result+turbine.getEEGAdvancement();
+        }
+        return result;
+    }
 
     @Override
     public void accept(EnergyVisitor visitor) {
